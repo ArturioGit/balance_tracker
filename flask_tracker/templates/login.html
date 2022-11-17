@@ -1,0 +1,38 @@
+{% extends 'base.html'%}
+{% block content %}
+   <h1>Authorization</h1>
+   <section>
+      <form action="{{url_for('users.login')}}" method="post" class="login_form">
+         {{ form.hidden_tag()}}
+          <div>
+              {{ form.login.label()}}
+              {{ form.login(class="login_input")}}
+          </div>
+
+          <div>
+              {{ form.password.label()}}
+              {{ form.password(class="login_input")}}
+              <div><a href="{{url_for('users.request_reset')}}">Forget?</a></div>
+          </div>
+
+          <div class="flex_remain">
+              {{ form.remember.label(class="remain2")}}
+              {{ form.remember(class="remain3")}}
+          </div>
+
+          <div>
+              {{ form.submit(class="login_submit")}}
+          </div>
+
+          <div class="buttonRegistration_Login">
+            <a class="buttonRegistration_Login" href={{url_for('users.registration')}}>Registration</a>
+         </div>
+
+         {% for category, message in get_flashed_messages(True) %}
+          <div class="flash {{category}}">
+            {{ message }}
+         </div>
+         {% endfor %}
+      </form>
+   </section>
+{% endblock %}

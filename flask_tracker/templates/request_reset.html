@@ -1,0 +1,34 @@
+{% extends 'base.html'%}
+{% block content %}
+   <h1>Reset</h1>
+   <section>
+      <form action="" method="post" class="login_form">
+        {{ form.hidden_tag()}}
+
+          <div>
+              {{ form.email.label()}}
+              {% if form.email.errors %}
+                    {{ form.email(class="login_input valid_error")}}
+                    <div class="show_errors">
+                        {% for error in form.email.errors %}
+                            <span>{{error}}</span>
+                        {% endfor %}
+                    </div>
+              {% else %}
+                    {{ form.email(class="login_input")}}
+              {% endif %}
+          </div>
+
+          <div>
+              {{ form.submit(class="login_submit")}}
+          </div>
+
+            {% for category, message in get_flashed_messages(True) %}
+         <div class="flash {{category}}">
+            {{ message }}
+         </div>
+            {% endfor %}
+
+      </form>
+   </section>
+{% endblock %}

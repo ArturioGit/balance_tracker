@@ -1,0 +1,86 @@
+{% extends 'base.html'%}
+{% block content %}
+    <h1>Profile</h1>
+        <div class="profile">
+            <div>
+                <img class="img_avatar" src={{ file }}>
+            </div>
+            <div class="profile-info">
+                <div class="little_info">Fullname: {{current_user.name}} {{current_user.surname}}</div>
+                <div class="little_info">Email: {{current_user.email}}</div>
+            </div>
+            <div class="return">
+                <a class="return" href={{url_for('users.logout')}}> Logout</a>
+            </div>
+        </div>
+        <div class="update-form">
+        <form action="" method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag()}}
+          <div class="a-form">
+              {{ form.name.label(class="update-label")}}
+              {% if form.name.errors %}
+                    {{ form.name(class="update-border valid_error")}}
+                    <div class="show_errors">
+                        {% for error in form.name.errors %}
+                            <span>{{error}}</span>
+                        {% endfor %}
+                    </div>
+              {% else %}
+                    {{ form.name(class="update-border")}}
+              {% endif %}
+          </div>
+
+          <div class="a-form">
+              {{ form.surname.label(class="update-label")}}
+              {% if form.surname.errors %}
+                    {{ form.surname(class="update-border valid_error")}}
+                    <div class="show_errors">
+                        {% for error in form.surname.errors %}
+                            <span>{{error}}</span>
+                        {% endfor %}
+                    </div>
+              {% else %}
+                    {{ form.surname(class="update-border")}}
+              {% endif %}
+          </div>
+
+          <div class="a-form">
+              {{ form.email.label(class="update-label")}}
+              {% if form.email.errors %}
+                    {{ form.email(class="update-border valid_error")}}
+                    <div class="show_errors">
+                        {% for error in form.email.errors %}
+                            <span>{{error}}</span>
+                        {% endfor %}
+                    </div>
+              {% else %}
+                    {{ form.email(class="update-border")}}
+              {% endif %}
+          </div>
+
+            <div class="a-form">
+              {{ form.avatar.label(class="update-label")}}
+              {% if form.avatar.errors %}
+                    {{ form.avatar(class="update-avatar avatar_error")}}
+                    <div class="show_errors">
+                        {% for error in form.avatar.errors %}
+                            <span>{{error}}</span>
+                        {% endfor %}
+                    </div>
+              {% else %}
+                    {{ form.avatar(class="update-avatar")}}
+              {% endif %}
+          </div>
+
+          <div class="a-form">
+              {{ form.submit(class="update")}}
+          </div>
+
+            {% for category, message in get_flashed_messages(True) %}
+         <div class="flash {{category}}">
+            {{ message }}
+         </div>
+            {% endfor %}
+        </form>
+
+{% endblock %}

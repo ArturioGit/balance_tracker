@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href={{url_for('static', filename='css/style.css' )}}>
+    <meta charset="UTF-8">
+    <title>Dyson</title>
+</head>
+<body>
+
+<header>
+    <a href={{url_for('main.home')}}><img class="logo" src={{url_for('static', filename='img/logos/dyson.png' ,
+                                          alt="logo" )}}></a>
+    <nav>
+        <ul class="nav_links">
+            <li><a href={{url_for('entries.tracking')}}>Tracking</a></li>
+            <li><a href={{url_for('main.projects')}}>Projects</a></li>
+            <li><a href={{url_for('main.home')}}>About</a></li>
+            {% if not current_user.is_authenticated %}
+            <li><a href={{url_for('users.login')}}>Login</a></li>
+            {% endif %}
+            <li><a href={{url_for('users.profile')}}>Profile</a></li>
+        </ul>
+    </nav>
+    <a class="cta" href="{{url_for('entries.add_entry', currency_name='1INCH')}}">
+        <button>Add entry</button>
+    </a>
+</header>
+{% block content -%}
+{% endblock %}
+</body>
+</html>

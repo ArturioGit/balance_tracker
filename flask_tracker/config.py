@@ -1,0 +1,10 @@
+DEBUG = True
+SECRET_KEY = 'kflg8f4nncvn4llsdfvjadvxvdsfjmve4dfkgdnsmnmfvdkfgh'
+SQLALCHEMY_DATABASE_URI = 'sqlite:///mainBase.db'
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+MAIL_SERVER = 'smtp.gmail.com'
+MAIL_PORT = 465
+MAIL_USE_TLS = False
+MAIL_USE_SSL = True
+MAIL_USERNAME = 'example.for.flask@gmail.com'
+MAIL_PASSWORD = 'suxtwfjwsevrnjrw'

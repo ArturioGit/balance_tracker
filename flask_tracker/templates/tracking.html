@@ -1,0 +1,52 @@
+{% extends 'base.html'%}
+{% block content %}
+<div class="data-entries-box">
+    <div class="entries">
+        <h2 class="h2-tracking">All entries</h2>
+        {% for entry in entries_on_page.items %}
+            <div class="entry-box">
+                <div class="entry-info">
+                    <div class="entry-info-value"><img src="{{url_for('static', filename='img/coins/'+ entry.name +'.png')}}"></div>
+                    <div class="entry-info-value"><a href="{{url_for('entries.entries_of_currency', currency=entry.name)}}">{{ entry.name }}</a></div>
+                    <div class="entry-info-value">Price: {{ round(entry.price, 3) }}$</div>
+                    <div class="entry-info-value">{{ entry.amount_of_dollars }}$</div>
+                </div>
+
+                <div class="tool-entry-box">
+                    <a href="{{ url_for('entries.delete_entry', entry_id=entry.id) }}"><div class="tool-entry entry-delete">Delete</div></a>
+                    <a href="{{ url_for('entries.edit_entry', entry_id=entry.id) }}"><div class="tool-entry entry-edit">Edit</div></a>
+                </div>
+
+            </div>
+        {% endfor %}
+        <div class="page-box">
+            {% for page_num in entries_on_page.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=1) %}
+                {% if page_num %}
+                    <a class="btn-page" href="{{ url_for('entries.tracking', page=page_num) }}">{{page_num}}</a>
+                {% else %}
+                    <span class="btn-dotdot">...</span>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="statistics">
+        <h2 class="h2-tracking">Statistics</h2>
+        {% if total_invest %}
+                <div class="statistics-info">Total investment: {{ total_invest }}$</div>
+
+            {% if total_invest > total_profit %}
+                <div class="statistics-info decrease">Current balance: {{ total_profit }}$</div>
+
+                <div class="statistics-info decrease">Profit: {{ round(total_profit / total_invest * 100 - 100, 3) }}%</div>
+            {% else %}
+                <div class="statistics-info increase">Current balance: {{ total_profit }}$</div>
+
+                <div class="statistics-info increase">Profit: {{ round(total_profit / total_invest * 100 - 100, 3) }}%</div>
+            {% endif %}
+        {% endif %}
+
+    </div>
+
+</div>
+{% endblock %}

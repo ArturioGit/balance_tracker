@@ -1,0 +1,16 @@
+{% extends 'base.html'%}
+{% block content %}
+<h1>CRYPTOCURRENCIES</h1>
+    <section class="main_name">
+        {% for list_of_a_currency in list_of_currencies  %}
+
+		<div class="currency-block">
+            <a href="{{url_for('entries.entries_of_currency', currency=list_of_a_currency.name)}}">
+            <div class="currency-name">{{ list_of_a_currency.name }}</div>
+            <img src="{{url_for('static', filename='img/coins/'+list_of_a_currency.logo)}}">
+            </a>
+		</div>
+
+        {% endfor %}
+    </section>
+{% endblock %}

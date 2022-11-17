@@ -1,0 +1,72 @@
+{% extends 'base.html'%}
+{% block content %}
+   <div>
+
+       <div class="entry-box for-edit-entry-box">
+        <div class="entry-info">
+            <div class="entry-info-value"><img src="{{url_for('static', filename='img/coins/'+ entry.name +'.png')}}"></div>
+            <div class="entry-info-value">{{ entry.name }}</div>
+            <div class="entry-info-value">Price: {{ entry.price }}$</div>
+            <div class="entry-info-value">{{ entry.amount_of_dollars }}$</div>
+        </div>
+
+    </div>
+
+      <form action="" method="post" class="form-add-entry">
+        {{ form.hidden_tag()}}
+          <div>
+              {{ form.currency.label(class="label-add")}}
+              {% if form.currency.errors %}
+                    {{ form.currency(class="choice-currency valid_error")}}
+                    <div class="show_errors">
+                        {% for error in form.currency.errors %}
+                            <span>{{error}}</span>
+                        {% endfor %}
+                    </div>
+              {% else %}
+                    {{ form.currency(class="choice-currency")}}
+              {% endif %}
+          </div>
+
+            <div>
+              {{ form.price.label(class="label-add")}}
+              {% if form.price.errors %}
+                    {{ form.price(class="currency-info valid_error")}}
+                    <div class="show_errors">
+                        {% for error in form.price.errors %}
+                            <span>{{error}}</span>
+                        {% endfor %}
+                    </div>
+              {% else %}
+                    {{ form.price(class="currency-info")}}
+              {% endif %}
+          </div>
+
+          <div>
+              {{ form.amount.label(class="label-add")}}
+              {% if form.amount.errors %}
+                    {{ form.amount(class="currency-info valid_error")}}
+                    <div class="show_errors">
+                        {% for error in form.amount.errors %}
+                            <span>{{error}}</span>
+                        {% endfor %}
+                    </div>
+              {% else %}
+                    {{ form.amount(class="currency-info")}}
+              {% endif %}
+          </div>
+
+          <div class="div-add">
+              {{ form.submit(class="tool-entry entry-edit current-edit")}}
+          </div>
+
+            {% for category, message in get_flashed_messages(True) %}
+         <div class="flash {{category}}">
+            {{ message }}
+         </div>
+            {% endfor %}
+
+         </form>
+   </div>
+
+{% endblock %}

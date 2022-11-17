@@ -1,0 +1,107 @@
+{% extends 'base.html'%}
+{% block content %}
+   <h1>Registration</h1>
+   <section>
+      <form action="" method="post" class="login_form">
+        {{ form.hidden_tag()}}
+          <div>
+              {{ form.name.label()}}
+              {% if form.name.errors %}
+                    {{ form.name(class="login_input valid_error")}}
+                    <div class="show_errors">
+                        {% for error in form.name.errors %}
+                            <span>{{error}}</span>
+                        {% endfor %}
+                    </div>
+              {% else %}
+                    {{ form.name(class="login_input")}}
+              {% endif %}
+          </div>
+
+          <div>
+              {{ form.surname.label()}}
+              {% if form.surname.errors %}
+                    {{ form.surname(class="login_input valid_error")}}
+                    <div class="show_errors">
+                        {% for error in form.surname.errors %}
+                            <span>{{error}}</span>
+                        {% endfor %}
+                    </div>
+              {% else %}
+                    {{ form.surname(class="login_input")}}
+              {% endif %}
+          </div>
+
+          <div>
+              {{ form.login.label()}}
+              {% if form.login.errors %}
+                    {{ form.login(class="login_input valid_error")}}
+                    <div class="show_errors">
+                        {% for error in form.login.errors %}
+                            <span>{{error}}</span>
+                        {% endfor %}
+                    </div>
+              {% else %}
+                    {{ form.login(class="login_input")}}
+              {% endif %}
+          </div>
+
+          <div>
+              {{ form.email.label()}}
+              {% if form.email.errors %}
+                    {{ form.email(class="login_input valid_error")}}
+                    <div class="show_errors">
+                        {% for error in form.email.errors %}
+                            <span>{{error}}</span>
+                        {% endfor %}
+                    </div>
+              {% else %}
+                    {{ form.email(class="login_input")}}
+              {% endif %}
+          </div>
+
+          <div>
+              {{ form.password.label()}}
+              {% if form.password.errors %}
+                    {{ form.password(class="login_input valid_error")}}
+                    <div class="show_errors">
+                        {% for error in form.password.errors %}
+                            <span>{{error}}</span>
+                        {% endfor %}
+                    </div>
+              {% else %}
+                    {{ form.password(class="login_input")}}
+              {% endif %}
+          </div>
+
+          <div>
+              {{ form.confirm_password.label()}}
+              {% if form.confirm_password.errors %}
+                    {{ form.confirm_password(class="login_input valid_error")}}
+                    <div class="show_errors">
+                        {% for error in form.confirm_password.errors %}
+                            <span>{{error}}</span>
+                        {% endfor %}
+                    </div>
+              {% else %}
+                    {{ form.confirm_password(class="login_input")}}
+              {% endif %}
+
+          </div>
+
+          <div>
+              {{ form.submit(class="login_submit")}}
+          </div>
+
+            {% for category, message in get_flashed_messages(True) %}
+         <div class="flash {{category}}">
+            {{ message }}
+         </div>
+            {% endfor %}
+
+          <div class="buttonRegistration_Login">
+            <a class="buttonRegistration_Login" href={{url_for('users.login')}}>Log in</a>
+         </div>
+      </form>
+   </section>
+{% endblock %}
